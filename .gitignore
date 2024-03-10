@@ -19,7 +19,10 @@
 
 # Go workspace file
 go.work
+go.work.sum
 
+# macOs
+*.DS_Store
 
 # postgres persistence
-db-data/*
+db_data/postgres/*
