@@ -14,7 +14,6 @@ services:
       replicas: 1
   
   authentication-service:
-    platform: linux/amd64
     build:
       context: authentication-service
       dockerfile: authentication-service.dockerfile
@@ -40,4 +39,5 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: users
     volumes:
-      - ./db-data/postgres/:/var/lib/postgresql/data/
+      - ./db_data/postgres/:/var/lib/postgresql/data/
+      - ./db_data:/docker-entrypoint-initdb.d
