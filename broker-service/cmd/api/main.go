@@ -15,13 +15,13 @@ type Config struct {
 }
 
 func main() {
-	// app := Config{}
+	app := Config{}
 
 	log.Printf("Starting broker service on port %s\n", webPort)
 
 	srv := &http.Server{
 		Addr: fmt.Sprintf(":%s", webPort),
-		// Handler: app.routes(),
+		Handler: app.routes(),
 	}
 
 	err := srv.ListenAndServe()
