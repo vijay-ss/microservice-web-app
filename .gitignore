@@ -25,4 +25,5 @@ go.work.sum
 *.DS_Store
 
 # postgres persistence
-db_data/*
+db_data/mongo/*
+db_data/postgres/*
