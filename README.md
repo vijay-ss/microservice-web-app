@@ -17,3 +17,14 @@ A front end html template is used to interface between the microservices.
 - MongoDB
 - Makefile
 - HTML
+
+## Microservices in Depth
+
+### Broker Service
+Handles requests from the front end application. The Broker will process the request and send a response back to the front end application.
+
+### Authentication Service
+Allows the user to authenticate via the Broker Service. Data is persisted to a PostgresQL instance within Docker. This Authentication service can be used alongside any other microservice.
+
+### Logger Service
+Only available within the overall microservice Kubernetes cluster. It stores all information within a MongoDB database.
