@@ -15,8 +15,11 @@ A front end html template is used to interface between the microservices.
 - Docker
 - PostgresQL
 - MongoDB
+- RabbitMQ
 - Makefile
 - HTML
+- Mailhog
+- RPC
 
 ## Microservices in Depth
 
@@ -28,3 +31,9 @@ Allows the user to authenticate via the Broker Service. Data is persisted to a P
 
 ### Logger Service
 Only available within the overall microservice Kubernetes cluster. It stores all information within a MongoDB database.
+
+### Mail Service
+A mail server which allows the Broker or Listener service to send email notifications.
+
+### Listener Service
+Retrieves events/requests from RabbitMQ for consumption by the other microservices.
