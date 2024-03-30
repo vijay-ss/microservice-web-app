@@ -27,3 +27,12 @@ go.work.sum
 # postgres persistence
 db_data/mongo
 db_data/postgres
+db_data/rabbitmq
+
+# output binary files
+*/frontApp
+*/brokerApp
+*/authApp
+*/loggerServiceApp
+*/mailerApp
+*/listenerApp
