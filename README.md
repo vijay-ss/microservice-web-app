@@ -19,7 +19,7 @@ A front end html template is used to interface between the microservices.
 - Makefile
 - HTML
 - Mailhog
-- RPC
+- gRPC
 
 ## Microservices in Depth
 
@@ -37,3 +37,9 @@ A mail server which allows the Broker or Listener service to send email notifica
 
 ### Listener Service
 Retrieves events/requests from RabbitMQ for consumption by the other microservices.
+
+## Logging connections with gRPC
+In many cases, logging speed can be sped up using gRPC over JSON. The Logger service will contain a Listener for accepting gRPC connections made from the Broker via the Frond End.
+
+The following command generates the appropriate grpc code from the `logs.proto` files:
+- `protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative logs.proto`
