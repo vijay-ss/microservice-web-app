@@ -13,6 +13,7 @@ A front end html template is used to interface between the microservices.
 ## Tools
 - Go
 - Docker
+- Docker Swarm
 - PostgresQL
 - MongoDB
 - RabbitMQ
@@ -43,3 +44,34 @@ In many cases, logging speed can be sped up using gRPC over JSON. The Logger ser
 
 The following command generates the appropriate grpc code from the `logs.proto` files:
 - `protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative logs.proto`
+
+## Deploying to Docker Swarm
+`cd` into each service directory, then build and push to docker hub.
+
+- `docker build -f logger-service.dockerfile -t <docker_account>/logger-service:1.0.0 .`
+- `docker push <docker_account>/logger-service:1.0.0`
+
+- `docker build -f broker-service.dockerfile -t <docker_account>/broker-service:1.0.0 .`
+- `docker push <docker_account>/broker-service:1.0.0`
+
+- `docker build -f authentication-service.dockerfile -t <docker_account>/authentication-service:1.0.0 .`
+- `docker push <docker_account>/authentication-service:1.0.0`
+
+- `docker build -f mail-service.dockerfile -t <docker_account>/mail-service:1.0.0 .`
+- `docker push <docker_account>/mail-service:1.0.0`
+
+- `docker build -f listener-service.dockerfile -t <docker_account>/listener-service:1.0.0 .`
+- `docker push <docker_account>/listener-service:1.0.0`
+
+- `docker build -f front-end.dockerfile -t <docker_account>/front-end:1.0.0 .`
+- `docker push <docker_account>/front-end:1.0.0`
+
+- `docker build -f caddy.dockerfile -t <docker_account>/micro-caddy:1.0.0 .`
+- `docker push <docker_account>/micro-caddy:1.0.0`
+
+Deploy to Docker Swarm: `docker stack deploy -c swarm.yml myapp`
+view services: `docker service ls`
+Scaling services example: `docker service scale myapp_listener-service=3`
+
+`docker swarm init`
+`docker stack deploy -c swarm.yml myapp`
