@@ -21,6 +21,7 @@ A front end html template is used to interface between the microservices.
 - HTML
 - Mailhog
 - gRPC
+- Kubernetes
 
 ## Microservices in Depth
 
@@ -75,3 +76,20 @@ Scaling services example: `docker service scale myapp_listener-service=3`
 
 `docker swarm init`
 `docker stack deploy -c swarm.yml myapp`
+
+## Deploying to Kubernetes
+
+Start Minikube:
+`minikube start --nodes=2`
+
+Running a dockerized Postgres instance:
+- `docker-compose -f postgres.yml up -d`
+
+There are a few ways to expose the cluster to the local network:
+
+Exposing the broker-service as a Load Balancer
+- `kubectl expose deployment broker-service --type=LoadBalancer --port=8080 --target-port=8080`
+- `minikube tunnel`
+
+Ingress to cluster using Nginx
+- `minikube addons enable ingress`
